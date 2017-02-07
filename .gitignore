@@ -52,4 +52,6 @@ Temporary Items
 .apdisk
 /bin/
 *.class
+*.jar
 *.classpath
+

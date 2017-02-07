@@ -1,7 +1,5 @@
 package org.usfirst.frc.team294.robot.commands;
 
-import org.usfirst.frc.team294.robot.Robot;
-
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -9,15 +7,10 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveWithEncoders extends Command {
 
-		private double commandSpeed;
-		private double distance; 
-		
-    public DriveWithEncoders(double distance) {
+    public DriveWithEncoders() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-    	requires(Robot.driveTrain);
-    	this.distance = distance;
-      }
+    }
 
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -29,7 +22,7 @@ public class DriveWithEncoders extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-       return false;
+        return false;
     }
 
     // Called once after isFinished returns true
