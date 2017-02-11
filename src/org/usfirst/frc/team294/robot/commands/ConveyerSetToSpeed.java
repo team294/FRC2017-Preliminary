@@ -3,24 +3,29 @@ package org.usfirst.frc.team294.robot.commands;
 import org.usfirst.frc.team294.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Stop the Drive Train
+ * Sets the speed of both conveyers
  */
-public class DriveStop extends Command {
+public class ConveyerSetToSpeed extends Command {
 
-    public DriveStop() {
-        requires(Robot.driveTrain);
+	private double speed;
+	
+	/**
+	 * Set the speed of the vertical and horizontal conveyers
+	 * @param speed from -1 (out) to +1 (in)
+	 */
+    public ConveyerSetToSpeed(double speed) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.ballFeed);
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.stop();
-
-    	SmartDashboard.putNumber("Drive Forward Speed", 0);
-    
-    	Robot.log.writeLog("DriveTrain: Drivetrain stopped by software");
+    	Robot.ballFeed.setHorSpeed(speed);
+    	Robot.ballFeed.setVertSpeed(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,6 +44,5 @@ public class DriveStop extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.driveTrain.stop();
     }
 }

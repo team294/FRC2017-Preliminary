@@ -3,24 +3,30 @@ package org.usfirst.frc.team294.robot.commands;
 import org.usfirst.frc.team294.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Stop the Drive Train
+ *
  */
-public class DriveStop extends Command {
+public class MoveHopper extends Command {
 
-    public DriveStop() {
-        requires(Robot.driveTrain);
+	private boolean position;
+	
+	/**
+	 * Set the position of the hopper
+	 * @param position true for deployed, false for stowed
+	 */
+    public MoveHopper(boolean position) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.intake);
+    	
+    	this.position = position;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.stop();
-
-    	SmartDashboard.putNumber("Drive Forward Speed", 0);
-    
-    	Robot.log.writeLog("DriveTrain: Drivetrain stopped by software");
+    	if (position) Robot.intake.deployHopper();
+    	else { Robot.intake.stowHopper(); }
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,6 +45,5 @@ public class DriveStop extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.driveTrain.stop();
     }
 }

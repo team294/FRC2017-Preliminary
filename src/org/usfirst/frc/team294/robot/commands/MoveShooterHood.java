@@ -7,26 +7,26 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class SetGearSolenoid extends Command {
+public class MoveShooterHood extends Command {
 
-	private boolean state;
+	private boolean position;
 	
 	/**
-	 * Set the gear piston
-	 * @param state true for out, false for in
+	 * Set the position of the shooter hood
+	 * @param position true for out/up, false for in/down
 	 */
-    public SetGearSolenoid(boolean state) {
-        requires(Robot.gearGate);
-        this.state = state;
+    public MoveShooterHood(boolean position) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.shooterHood);
+    	
+    	this.position = position;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	if (state) {
-    		Robot.gearGate.out();
-    	} else {
-    		Robot.gearGate.in();
-    	}
+    	if (position) Robot.shooterHood.deploy();
+    	else { Robot.shooterHood.stow(); }
     }
 
     // Called repeatedly when this Command is scheduled to run

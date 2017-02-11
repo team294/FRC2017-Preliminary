@@ -1,11 +1,8 @@
 package org.usfirst.frc.team294.robot.subsystems;
 
-import org.usfirst.frc.team294.robot.Robot;
 import org.usfirst.frc.team294.robot.RobotMap;
-
-import com.ctre.CANTalon;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.Solenoid;
 
 /**
  * The Hood over the Shooter
@@ -14,20 +11,26 @@ public class ShooterHood extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	
-	public static CANTalon shooterHoodMotor = new CANTalon(RobotMap.shooterHoodMotor);
 
+	public static Solenoid shooterHoodSolenoid = new Solenoid(RobotMap.shooterHoodSolenoid);
+    
 	/**
-	 * Set the angle of the shooter hood
+	 * Deploy the shooter hood into the up position
 	 */
-	public void setAngle(double angle) {
-		Robot.log.writeLog("Shooter Hood: Setting angle to " + angle);
-		// Set the angle here
+	public void deploy() {
+		shooterHoodSolenoid.set(true);
 	}
 	
-    public void initDefaultCommand() {
+	/**
+	 * Stow the shooter hood in the down position
+	 */
+	public void stow() {
+		shooterHoodSolenoid.set(false);
+	}
+	
+  	public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
-    }
+  		//setDefaultCommand(new MySpecialCommand());
+  	}
 }
 

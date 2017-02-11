@@ -3,24 +3,28 @@ package org.usfirst.frc.team294.robot.commands;
 import org.usfirst.frc.team294.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- * Stop the Drive Train
+ *
  */
-public class DriveStop extends Command {
+public class ClimbSetToSpeed extends Command {
 
-    public DriveStop() {
-        requires(Robot.driveTrain);
+	private double speed;
+	
+	/**
+	 * Set the speed of the climber motors
+	 * @param speed from -1 (down) to +1 (up)
+	 */
+    public ClimbSetToSpeed(double speed) {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.intake);
+    	this.speed = speed;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.driveTrain.stop();
-
-    	SmartDashboard.putNumber("Drive Forward Speed", 0);
-    
-    	Robot.log.writeLog("DriveTrain: Drivetrain stopped by software");
+    	Robot.intake.setClimbSpeed(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -39,6 +43,5 @@ public class DriveStop extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.driveTrain.stop();
     }
 }
