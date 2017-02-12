@@ -5,7 +5,10 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import org.usfirst.frc.team294.robot.Robot;
+// import org.usfirst.frc.team294.robot.StopIntake;
 import org.usfirst.frc.team294.robot.commands.*;
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -80,10 +83,20 @@ public class OI {//Hopefully this works or maybe this will
 	     // Subsystem Testing Commands
 	     SmartDashboard.putData("Gear Piston Out", new SetGearSolenoid(true));
 	     SmartDashboard.putData("Gear Piston In", new SetGearSolenoid(false));
-	     SmartDashboard.putData("Stop Intake Motor", new IntakeSetToSpeed(0.0));
-	     SmartDashboard.putData("Start Intake Motor", new IntakeSetToSpeed(0.5));
-	     SmartDashboard.putData("Stop Shooter Motor", new ShooterSetToSpeed(0.0));
-	     SmartDashboard.putData("Start Shooter Motor", new ShooterSetToSpeed(0.3));
+//	     SmartDashboard.putData("Stop Intake Motor", new IntakeSetToSpeed(0.0));
+//	     SmartDashboard.putData("Start Intake Motor", new IntakeSetToSpeed(0.5));
+//	     SmartDashboard.putData("Stop Shooter Motor", new ShooterSetToSpeed(0.0));
+//	     SmartDashboard.putData("Start Shooter Motor", new ShooterSetToSpeed(0.3));
+
+//  this section added for shooter
+	//		button1.whileHeld(new StartIntakeMotor());
+			SmartDashboard.putData("Brake Shooter Motor", new StopShooterMotor());
+			Robot.shooter.setupSmartDashboard();
+			SmartDashboard.putData("Set Shooter PIDF values", new SetMotorPIDF());
+			SmartDashboard.putData("Set Shooter motor speed", new SetShooterMotorSpeedFromDashboard());
+			SmartDashboard.putData("Use VBus Maximum Control", new SetShooterMotorVbusFromDashboard());
+			//SmartDashboard.putData("Use Fixed Recovery Voltage Control", new FixedRecovery());
+			SmartDashboard.putData("Set Intake Motor Voltage", new StartIntakeMotor());
 	     
 	     // Autonomous Command Testing
 	     SmartDashboard.putData("Autonomous Gear Left", new AutoDriveAndGearLeft());
