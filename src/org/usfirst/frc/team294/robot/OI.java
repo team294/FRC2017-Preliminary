@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team294.robot.commands.SetShooterMotorPIDF;
 
 import org.usfirst.frc.team294.robot.Robot;
 // import org.usfirst.frc.team294.robot.StopIntake;
@@ -92,7 +93,7 @@ public class OI {//Hopefully this works or maybe this will
 	//		button1.whileHeld(new StartIntakeMotor());
 			SmartDashboard.putData("Brake Shooter Motor", new StopShooterMotor());
 			Robot.shooter.setupSmartDashboard();
-			SmartDashboard.putData("Set Shooter PIDF values", new SetMotorPIDF());
+			SmartDashboard.putData("Set Shooter PIDF values", new SetShooterMotorPIDF());
 			SmartDashboard.putData("Set Shooter motor speed", new SetShooterMotorSpeedFromDashboard());
 			SmartDashboard.putData("Use VBus Maximum Control", new SetShooterMotorVbusFromDashboard());
 			//SmartDashboard.putData("Use Fixed Recovery Voltage Control", new FixedRecovery());
