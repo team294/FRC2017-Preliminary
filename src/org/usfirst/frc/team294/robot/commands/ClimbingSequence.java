@@ -5,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class SetClimbConfig extends CommandGroup {
+public class ClimbingSequence extends CommandGroup {
 
-    public SetClimbConfig() {
+    public ClimbingSequence() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
